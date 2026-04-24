@@ -1,0 +1,59 @@
+[***center / Amt für Arbeit] [Web] File upload rejects valid PDF below size limit (7.5 MB)
+
+Project: ***center Digital (web.***.de)
+Version: Web (latest)
+Device: Mobile browser (smartphone)
+OS Version: Android / iOS (reproducible on mobile)
+Severity: High — blocks document submission (critical user flow)
+Priority: High
+
+Description:
+
+User is unable to upload a PDF document in the Jobcenter online portal, although the file size is explicitly within the allowed limit. The upload form states a maximum file size of 7.5 MB, and the user prepares a scanned rental agreement (~70 pages) compressed to 7.4 MB. Despite this, the system rejects the file with an error message indicating that the file exceeds the allowed size. This creates a blocking issue in a critical flow (submission of required documents such as rental contracts), forcing the user to re-process or split documents manually. 
+***center.digital → “Veränderung mitteilen” → “Unterlagen hochladen”
+
+Steps to Reproduce:
+1. Open ***center digital portal (web.***.de).
+2. Navigate to:
+ - “Veränderung online mitteilen”
+ - or “Unterlagen nachreichen”
+3. Select upload section (“Dateien auswählen”).
+4. Prepare a PDF file:
+ - multi-page document (~70 pages)
+ - compressed to 7.4 MB (below 7.5 MB limit)
+5. Upload the file.
+
+
+Expected Result:
+File is successfully uploaded since it is below the stated limit (7.5 MB).
+
+Actual Result:
+ - File is rejected
+ - Error message: “Das erzeugte PDF darf max. 7,5 MB groß sein.”
+ - Upload is blocked
+ 
+Additional Notes / Observations:
+Similar systems of the same platform show different size limits (e.g. 2 MB, 3 MB, 9 MB) depending on module (This suggests inconsistent backend validation rules)
+Official recommendations even suggest splitting large documents into smaller files (Meaning large PDFs are a known edge case)
+
+Possible Root Causes (Hypothesis):
+
+1. Backend size validation mismatch
+ - UI allows 7.5 MB
+ - Backend limit is lower (e.g. 7 MB or 7.2 MB)
+
+2. Binary size vs displayed size discrepancy
+ - File shown as 7.4 MB (decimal)
+ - Actual size in bytes exceeds limit (MiB vs MB issue)
+
+3. Base64 / multipart upload overhead
+ - File grows during upload encoding
+ - Backend checks encoded size instead of raw file
+
+4. Mobile browser upload bug
+ - Especially common with large PDFs on mobile Safari/Chrome
+
+5. Session / validation state bug
+ - Error message reused incorrectly regardless of actual failure reason
+
+-----

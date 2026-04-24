@@ -1,0 +1,108 @@
+[** Navigator] [Android] User is logged in but forced to re-enter password daily when attempting to add a journey to favorites
+
+Project: ** Navigator
+Version: 26.2.1
+Device: Tecno Spark Go 2024
+OS Version: Android v13.0.0
+Severity: Medium — the bug does not crash the application, but critically breaks the user scenario (usability).
+Priority: High
+Date: 26 Feb 2026
+
+User session is not persisted correctly. Although the user remains logged in (the profile icon shows they are authenticated), any attempt to favorite a connection requires password re-entry. This happens on a daily basis, suggesting a short-lived or improperly refreshed authentication token for this specific feature.
+
+Steps to Reproduce:
+1.  Launch the ** Navigator app on an Android device.
+2.  Log in with valid credentials.
+3.  Perform a connection search (e.g., from "Köln Hbf" to "Hamburg Hbf").
+4.  Click on the "Bookmark trip (favorite) icon for the search result.
+5.  Expected Result: The route is immediately added to favorites.
+6.  Actual Result: A password prompt appears, requesting the user to log in again.
+7.  Wait until the next calendar day.
+8.  Repeat steps 3-4.
+9.  Actual Result: The password prompt appears again.
+
+Please fix it.
+
+-----
+
+--------
+[MyPhoneOperator] [Android] User cannot purchase additional data despite receiving SMS offer
+
+Project: MyPhoneOperator App
+Version: (latest)
+Device: Android device
+OS Version: Android v13.0.0
+Severity: High — blocks purchase flow and creates inconsistency in communication
+Priority: High
+Date: 11 Aug 2025
+
+Description:
+User receives an SMS offering additional data packages (2 GB for €4.99 or 5 GB for €9.99) after exhausting their monthly data allowance.
+However, when attempting to purchase the offered packages via the MyPhoneOperator app, an error appears stating that the offer is not compatible with the user’s current tariff ("Hello 40 Flex").
+This creates a contradiction between marketing communication (SMS) and actual system behavior, leading to failed purchase attempts and poor user experience.
+
+Steps to Reproduce:
+1. Use a MyPhoneOperator SIM with tariff "Hello 40 Flex".
+2. Exhaust the monthly data allowance.
+3. Receive SMS with offer to purchase additional data (2 GB / 5 GB).
+4. Open the MyPhoneOperator app.
+5. Attempt to purchase one of the offered data packages.
+
+Expected Result:
+User can successfully purchase additional data as described in the SMS.
+
+Actual Result:
+Error message appears indicating the offer is not compatible with the current tariff.
+
+Additional Notes:
+
+Possible root causes:
+Incorrect targeting of SMS campaign
+Backend validation mismatch between tariff and add-on packages
+
+Suggested fix:
+Align SMS offers with eligible tariffs or
+Enable add-on purchases for "Hello 40 Flex" users
+
+-----
+
+[MyPhoneOperator Mobile] [Android] Mobile data not working in roaming (Germany → Netherlands) until manual APN change and long wait
+
+Project: MyPhoneOperator Mobile Network / MyPhoneOperator
+Version: N/A (network-level issue)
+Device: Android smartphone (e.g., Tecno Spark Go 2024)
+OS Version: Android v13.0.0
+Severity: Critical — complete loss of mobile data in roaming
+Priority: High
+
+Description:
+Mobile data stops working when the user crosses the border from Germany to the Netherlands, despite roaming being enabled on the device. The device connects to a foreign network, but internet access is unavailable. The issue persists indefinitely unless the user manually changes the APN settings from "internet.myphoneoperator.de" to "live.vodafone.com" and waits approximately 40–60 minutes for the connection to start working.
+Additionally, the official troubleshooting method provided by MyPhoneOperator (sending an SMS with "APN" to 55255) does not work — no response is received.
+This indicates a possible misconfiguration in roaming APN provisioning or failure in automatic carrier settings delivery.
+
+Steps to Reproduce:
+1. Use a MyPhoneOperator SIM card in Germany with active mobile data.
+2. Ensure roaming is enabled in device settings.
+3. Travel across the border from Germany to the Netherlands.
+4. Wait for the device to connect to a roaming partner network.
+5. Attempt to use mobile internet.
+
+Expected Result:
+Mobile data works automatically in roaming without any manual configuration changes.
+
+Actual Result:
+No internet access is available.
+
+Connection is restored only after:
+manually changing APN to "live.vodafone.com", and waiting 40–60 minutes.
+
+Additional Notes:
+Sending SMS with text "APN" to 55255 (as instructed on MyPhoneOperator website) does not trigger any response or configuration update.
+The issue severely impacts usability for users traveling within the EU (where roaming should work seamlessly).
+
+Possible root causes:
+Incorrect default APN for roaming scenarios
+Missing/failed OTA (over-the-air) configuration updates
+Roaming partner network incompatibility with default APN
+
+-----
