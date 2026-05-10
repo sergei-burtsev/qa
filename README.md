@@ -18,7 +18,7 @@ Web & Technical Testing
 •	Chrome DevTools
 •	REST API & JSON 
 •	Backend log analysis
-•	SQL (MySQL)
+•	SQL (MySQL, MSSQL)
 •	HTTP / HTTPS, Sessions, Cookies
 •	Client–server architecture understanding
 
@@ -35,9 +35,9 @@ Tools
 
 
 ## Portfolio
-- Bug reports: qa-bug-reports
-- Test automation: qa-automation
+- Bug reports: [qa-bug-reports](https://github.com/sergei-burtsev/qa/tree/main/qa-bug-reports)
+- Test automation: [qa-automation-playwright](https://github.com/sergei-burtsev/qa/tree/main/qa-automation/playwright)
 
 ## CV
-- English CV: qa-cv/burtsev-cv-qa.pdf
-- German Lebenslauf: qa-cv/burtsev-lebenslauf-qa.pdf
+- English CV: [qa-cv/burtsev-cv-qa.pdf](https://github.com/sergei-burtsev/qa/blob/main/qa-cv/burtsev-cv-qa.pdf)
+- Deutscher Lebenslauf: [qa-cv/burtsev-lebenslauf-qa.pdf](https://github.com/sergei-burtsev/qa/blob/main/qa-cv/lebenslauf-de/burtsev-lebenslauf-qa.pdf)
